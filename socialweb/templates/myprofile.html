@@ -1,0 +1,111 @@
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="{%static 'css/myprofile.css'%}">
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4">
+
+<header>
+
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<!-- <img src="" alt=""> -->
+				<h1>My Posts</h1>
+				<!-- <h1 class="profile-user-name">{{user}}</h1> -->
+				<!-- <button class="btn profile-edit-btn"> Edit Profile</button>
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button> -->
+
+
+            {%for p in posts%}
+			
+			<div class="profile-user-settings">
+
+			</div>
+            {%endfor%}
+		</div>
+			<div class="profile-stats">
+
+				<!-- <ul>
+					<li><span class="profile-stat-count">164</span> posts</li>
+					<li><span class="profile-stat-count">188</span> followers</li>
+					<li><span class="profile-stat-count">206</span> following</li>
+				</ul> -->
+
+			</div>
+
+			<div class="profile-bio">
+
+				<!-- <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p> -->
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+
+<main>
+ 
+	<div class="container">
+        {%for p in posts%}
+		<div class="gallery">
+			
+			<div class="gallery-item" tabindex="0">
+
+                {%if p.image%}
+
+				<img src="{{p.image.url}}" class="gallery-image" alt="">
+                {%endif%}
+                {{p.title}}
+				<div class="gallery-item-info">
+                    
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>{{p.likes}}</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+      
+			
+		</div>
+        {%endfor%}
+
+
+			</div>
+			<div class="col-4"></div>
+		</div>
+	</div>
+		<!-- End of gallery -->
+<!-- 
+		<div class="loader"></div>
+
+	</div> -->
+    
+	<!-- End of container -->
+   
+</main>
+</body>
+</html>

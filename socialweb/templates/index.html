@@ -1,7 +1,65 @@
-{%extends 'base.html'%}
+<!-- {%extends 'base.html'%} -->
 {%block body_block%}
 
-<h1>SocialApp</h1>
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="{%static 'assets/favicon.ico'%}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{%static 'css/styles.css'%}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" ></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'people'%}">People</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'myprofile'%}">My posts</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'sign-out'%}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>SocialBook</h1>
+                            <!-- <span class="subheading">A Blog Theme by Start Bootstrap</span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <h2>Welcome user {{user}}</h2>
+        <!-- Main Content-->
+       
+
+
+
+
+<h1></h1>
 <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
@@ -15,10 +73,10 @@
 
 
 <!-- list post -->
-<div class="row gx-4 gx-lg-5 justify-content-center">
+<!-- <div class="row gx-4 gx-lg-5 justify-content-center">
     {%for p in posts%}
     <div class="col-md-10 col-lg-8 col-xl-7">
-        <!-- Post preview-->
+        
         <div class="post-preview">
             <a href="post.html">
                 {%if p.image%}
@@ -37,26 +95,23 @@
         </div>
         <div class="mt-2">
             <a href="{%url 'like-post' p.id %}" class="btn btn-warning btn-sm">Like</a>
-            <!-- {{p}} -->
+           
             <i class="fa-solid fa-heart"></i>{{p.likes}} likes
 
-            <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
+        
 
             {%for cmt in p.posts_comments%}
             <div class="border rounded-pill p-3 class='w-100' ">
         
                  Comments={{cmt.comment}}
         
-                <!-- <i class="fa-solid fa-user"></i> {{p.user}}
-                <i class="fa-solid fa-calendar-days"></i> {{p.created_date}} -->
                 
             </div>
             {%endfor%}
         </div>
         
         <hr class="my-4" />
-    <!-- endlike -->
-    <!-- cmnt list -->
+  
     {%for cmnts in p.comment%}
        <div class="row">
         <div class="col-4"></div>
@@ -71,8 +126,7 @@
         <div class="col-4"></div>
        </div>
     {%endfor%}
-    <!-- endlist -->
-    <!-- cmnt -->
+
     <div>
         <form action="{%url 'add_comment' p.id %}" method="post" >
             {%csrf_token%}
@@ -81,9 +135,112 @@
         </form>
     </div>
 </div>    
+
+{%endfor%} -->
+
+
+
+
+
+{%for p in posts%}
+<div class="fb-cards-designs">
+    <div class="fb-clone-card">
+            <div class="fb-card-main-content">
+                <div class="fb-card-header">
+                    <div class="user-post-info">
+                        <div class="user-thumb">
+                        </div>
+                        <div class="user-information">
+                            <p>{{p.user}}</p>
+                            <small>{{p.created_date}}</small>
+                        </div>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                </div>
+
+                <div class="fb-card-body simple-text-card simple-image-card">
+                    <p>{{p.title}}</p>
+                    {%if p.image%}
+                    <div class="images-container">
+                        <img src="{{p.image.url}}" class="img-responsive" />
+                    </div>
+                    {%endif%}
+                </div>
+
+            </div>
+
+            <div class="fb-card-like-comment-holder">
+                <div class="fb-card-like-comment">
+                    <div class="likes-emoji-holder">
+                        <span>{{p.likes}} Likes</span>
+                    </div>
+                  
+                </div>
+            </div>
+
+            <div class="fb-card-actions-holder">
+                <div class="fb-card-actions">
+                    <div class="fb-btn-holder">
+                        <!-- <a href="#"><i class="far fa-thumbs-up"></i> Like</a> -->
+                        <a href="{%url 'like-post' p.id %}" class="btn btn-warning btn-sm">Like</a>
+                        <a href="#"><i class="far fa-comment-alt"></i> Comment</a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            {%for cmnts in p.comment%}
+            <div class="fb-card-comments">
+                <div class="comment-input-holder">
+                    <div class="user-thumb">
+                    </div>
+                    <div class="comment-input">
+                        <p class="post-meta">
+                Posted by
+                <a href="#!"></a>
+                on 
+            </p>
+            {{cmnts.comment}}
+            {%endfor%}
+                <form action="{%url 'add_comment' p.id %}" method="post" >
+                    {%csrf_token%}
+                    <input type="text" placeholder="Add comment" name="comment" class="form-control">
+                    
+                </form>
+                {%for cmt in p.posts_comments%}
+                <div class="like-comment-holder" style="font-size: small;color: rgb(87, 86, 86); padding-left: 15px; padding-top: 0px ;padding-bottom: 0px;">
+                    <span> {{cmt.comment}} by {{p.user}} on {{p.created_date}} <br> </span>
+
+                    <a href="{%url 'comment-delete' cmt.id%}"><button class="fa fa-trash"  style="margin-top: 0%;margin-bottom: 0px; border-radius: 50%; padding-left: 15px; padding-bottom: 15px; ">Delete</button></a>
+
+
+                </div>
+                {%endfor%}
+                    </div>
+
+        
+           
+            
+        </form>
+    </div>
+</div>    
 <!-- end -->
 {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
 {%endblock%}
+
 
 
